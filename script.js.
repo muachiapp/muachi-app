@@ -1,15 +1,24 @@
-// MUACHI APP
 
-document.addEventListener("DOMContentLoaded", function () {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 
-    const botao = document.getElementById("menu-btn");
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    if (botao) {
-        botao.addEventListener("click", function () {
-            alert("Bem-vindo ao MUACHI APP!");
-        });
-    }
+const firebaseConfig = {
+  apiKey: "AIzaSyDelcahfeDjMPQ47c86qQV8JOQvIZ19Xtw",
+  authDomain: "muachi-app.firebaseapp.com",
+  projectId: "muachi-app",
+  storageBucket: "muachi-app.firebasestorage.app",
+  messagingSenderId: "137558594498",
+  appId: "1:137558594498:web:f8b89350dc505e1e497c5b",
+  measurementId: "G-PB24Y1HG2M"
+};
 
-    console.log("MUACHI APP iniciado com sucesso!");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-});
+console.log("MUACHI APP ligada ao Firebase!");
