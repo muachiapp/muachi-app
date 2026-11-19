@@ -1,0 +1,38 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #F2E9D8;
+  color: #4B3425;
+}
+
+header {
+  background: #F2E9D8;
+  padding: 25px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #4B3425;
+}
+
+main {
+  padding: 25px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.6;
+}
