@@ -5,132 +5,471 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101116">
+
 <title>MUACHI APP | Comércio Digital</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#101116;color:white}
-header{background:#17191f;padding:20px;text-align:center;border-bottom:2px solid #c99b45}
-.logo{font-size:30px;font-weight:bold;color:#d9ad58}
-nav{display:flex;justify-content:center;gap:18px;padding:15px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:14px}
-.hero{text-align:center;padding:65px 20px;background:linear-gradient(135deg,#24242a,#101116)}
-.hero h1{font-size:35px;color:#e3b75e;margin-bottom:15px}
-.hero p{color:#ccc;line-height:1.6}
-.btn{display:inline-block;background:#d4a64d;color:#111;padding:13px 22px;border-radius:7px;text-decoration:none;font-weight:bold;margin-top:20px;border:0;cursor:pointer}
-section{padding:35px 20px;text-align:center}
-h2{color:#e3b75e;margin-bottom:20px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px}
-.card{background:#1d2028;padding:20px;border-radius:12px}
-.card h3{margin:10px 0;color:#e3b75e}
-.card p{color:#ccc;font-size:14px}
-form{max-width:400px;margin:auto;display:grid;gap:12px}
-input{padding:14px;border:1px solid #555;border-radius:7px;background:#20232c;color:white;width:100%}
-footer{text-align:center;background:#17191f;padding:25px;color:#aaa}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #101116;
+  color: white;
+  line-height: 1.6;
+}
+
+header {
+  background: #17191f;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #292c35;
+}
+
+.logo {
+  color: #e4b84b;
+  font-size: 29px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+header p {
+  color: #ccc;
+  font-size: 13px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+  background: #1c1f27;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #e4b84b;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px;
+  background: linear-gradient(135deg, #17191f, #29251c);
+}
+
+.hero h1 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.hero span {
+  color: #e4b84b;
+}
+
+.hero p {
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #e4b84b;
+  color: #111;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #e4b84b;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.product {
+  background: #1c1f27;
+  padding: 25px 15px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #30333d;
+}
+
+.product h3 {
+  color: #e4b84b;
+  margin-bottom: 8px;
+}
+
+.product p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* CADASTRO */
+
+.register {
+  max-width: 550px;
+  background: #1c1f27;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #383b45;
+  margin: auto;
+}
+
+.register h2 {
+  margin-bottom: 8px;
+}
+
+.register .intro {
+  text-align: center;
+  color: #bbb;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin: 13px 0 6px;
+  font-size: 14px;
+  color: #eee;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 6px;
+  border: 1px solid #454956;
+  background: #101116;
+  color: white;
+  font-size: 15px;
+}
+
+input:focus, select:focus {
+  outline: 1px solid #e4b84b;
+  border-color: #e4b84b;
+}
+
+.register button {
+  width: 100%;
+  margin-top: 22px;
+  font-size: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+#mensagem {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.success {
+  color: #65df91;
+}
+
+.error {
+  color: #ff7777;
+}
+
+.note {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.contact {
+  text-align: center;
+  background: #1c1f27;
+  border-radius: 10px;
+}
+
+footer {
+  background: #17191f;
+  padding: 25px 15px;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+  margin-top: 35px;
+}
+
+footer span {
+  color: #e4b84b;
+}
+
+@media(max-width: 600px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  nav {
+    gap: 13px;
+  }
+
+  .register {
+    padding: 20px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">MUACHI APP</div>
-<p>O teu comércio, o teu futuro.</p>
+  <div class="logo">MUACHI APP</div>
+  <p>O teu comércio, o teu futuro.</p>
 </header>
 
 <nav>
-<a href="#inicio">Início</a>
-<a href="#produtos">Produtos</a>
-<a href="#cadastro">Cadastro</a>
-<a href="#contacto">Contacto</a>
+  <a href="#inicio">Início</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#cadastro">Cadastro</a>
+  <a href="#contacto">Contacto</a>
 </nav>
 
 <div class="hero" id="inicio">
-<h1>Bem-vindo à MUACHI APP</h1>
-<p>Uma nova experiência de comércio digital.<br>
-Compra, vende e descobre oportunidades.</p>
-<a href="#produtos" class="btn">Explorar produtos</a>
+  <h1>Bem-vindo à <span>MUACHI APP</span></h1>
+  <p>Compra, vende e descobre oportunidades.</p>
+  <a href="#cadastro" class="btn">Criar minha conta</a>
 </div>
 
 <section id="produtos">
-<h2>Os nossos produtos</h2>
-<div class="products">
-<div class="card">
-<h3>Moda</h3>
-<p>Vestuário e acessórios.</p>
-</div>
-<div class="card">
-<h3>Tecnologia</h3>
-<p>Produtos tecnológicos.</p>
-</div>
-<div class="card">
-<h3>Calçado</h3>
-<p>Estilo e qualidade.</p>
-</div>
-<div class="card">
-<h3>Serviços</h3>
-<p>Serviços e oportunidades.</p>
-</div>
-</div>
-</section>
+  <h2>Os nossos produtos</h2>
 
+  <div class="products">
+
+    <div class="product">
+      <h3>Moda</h3>
+      <p>Vestuário e acessórios.</p>
+    </div>
+
+    <div class="product">
+      <h3>Tecnologia</h3>
+      <p>Produtos tecnológicos.</p>
+    </div>
+
+    <div class="product">
+      <h3>Calçado</h3>
+      <p>Estilo e qualidade.</p>
+    </div>
+
+    <div class="product">
+      <h3>Serviços</h3>
+      <p>Serviços e oportunidades.</p>
+    </div>
+
+  </div>
+</section>
 
 <section id="cadastro">
-  <h2>Criar conta MUACHI</h2>
-  <p>Junta-te à nossa comunidade digital.</p>
 
-  <form id="formCadastro" onsubmit="cadastrar(event)">
-    <input type="text" id="nome"
-      placeholder="Nome completo" required>
+  <div class="register">
 
-    <input type="email" id="email"
-      placeholder="Teu email" required>
+    <h2>Criar conta MUACHI</h2>
 
-    <input type="tel" id="telefone"
-      placeholder="Número de telefone" required>
+    <p class="intro">
+      Junta-te à nossa comunidade digital.
+    </p>
 
-    <input type="password" id="senha"
-      placeholder="Criar palavra-passe"
-      minlength="6" required>
+    <form id="formCadastro">
 
-    <button class="btn" type="submit">
-      Criar minha conta
-    </button>
-  </form>
+      <label for="tipo">Tipo de conta</label>
 
-  <p id="mensagem" style="margin-top:15px;color:#e3b75e"></p>
+      <select id="tipo" required>
+        <option value="">Selecciona o tipo de conta</option>
+        <option value="Comprador">Sou comprador</option>
+        <option value="Vendedor">Sou vendedor</option>
+      </select>
+
+      <label for="nome">Nome completo</label>
+      <input
+        type="text"
+        id="nome"
+        placeholder="Introduz o teu nome completo"
+        required
+      >
+
+      <label for="email">Endereço de e-mail</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="exemplo@email.com"
+        required
+      >
+
+      <label for="telefone">Número de telefone</label>
+      <input
+        type="tel"
+        id="telefone"
+        placeholder="Ex.: 923 000 000"
+        required
+      >
+
+      <div id="campoLoja" class="hidden">
+
+        <label for="loja">Nome da loja ou negócio</label>
+
+        <input
+          type="text"
+          id="loja"
+          placeholder="Nome da tua loja"
+        >
+
+      </div>
+
+      <button type="submit" class="btn">
+        Criar minha conta
+      </button>
+
+    </form>
+
+    <div id="mensagem" aria-live="polite"></div>
+
+    <p class="note">
+      Os dados deste cadastro de demonstração ficam
+      guardados apenas neste navegador.
+    </p>
+
+  </div>
+
 </section>
-  
-<h2>Criar uma conta</h2>
-<form onsubmit="cadastrar(event)">
-<input id="nome" type="text" placeholder="Nome completo" required>
-<input id="email" type="email" placeholder="E-mail" required>
-<input id="senha" type="password" placeholder="Criar palavra-passe" required>
-<button class="btn" type="submit">Cadastrar</button>
-</form>
-<p id="mensagem" style="margin-top:15px;color:#e3b75e"></p>
-</section>
 
-<section id="contacto">
-<h2>Fale connosco</h2>
-<p>MUACHI APP – Comércio Digital</p>
-<a class="btn" href="https://wa.me/244923000000" target="_blank">Contactar pelo WhatsApp</a>
+<section id="contacto" class="contact">
+  <h2>Fale connosco</h2>
+  <p>MUACHI APP – Comércio Digital</p>
+  <p>Raízes africanas, comércio e oportunidades.</p>
 </section>
 
 <footer>
-<p>© 2026 MUACHI APP</p>
-<p>Nascidos da Terra. Vestidos de Futuro.</p>
+  <p>© 2026 <span>MUACHI APP</span> – Todos os direitos reservados.</p>
+  <p>Nascidos da Terra. Vestidos de Futuro.</p>
 </footer>
 
 <script>
-function cadastrar(event){
-event.preventDefault();
-const nome=document.getElementById("nome").value;
-document.getElementById("mensagem").textContent=
-"Bem-vindo à MUACHI APP, "+nome+"!";
-}
+
+// SELECÇÃO DO TIPO DE CONTA
+
+const tipo = document.getElementById("tipo");
+const campoLoja = document.getElementById("campoLoja");
+const loja = document.getElementById("loja");
+
+tipo.addEventListener("change", function() {
+
+  if (tipo.value === "Vendedor") {
+    campoLoja.classList.remove("hidden");
+    loja.required = true;
+  } else {
+    campoLoja.classList.add("hidden");
+    loja.required = false;
+    loja.value = "";
+  }
+
+});
+
+// CADASTRO
+
+document.getElementById("formCadastro")
+.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+
+  const mensagem = document.getElementById("mensagem");
+
+  if (!tipo.value || !nome || !email || !telefone) {
+    mensagem.textContent = "Preenche todos os campos.";
+    mensagem.className = "error";
+    return;
+  }
+
+  if (tipo.value === "Vendedor" && !loja.value.trim()) {
+    mensagem.textContent = "Indica o nome da tua loja.";
+    mensagem.className = "error";
+    return;
+  }
+
+  const utilizador = {
+    id: Date.now(),
+    tipo: tipo.value,
+    nome: nome,
+    email: email,
+    telefone: telefone,
+    loja: tipo.value === "Vendedor" ? loja.value.trim() : "",
+    data: new Date().toISOString()
+  };
+
+  try {
+
+    const contas = JSON.parse(
+      localStorage.getItem("muachi_contas") || "[]"
+    );
+
+    const existe = contas.some(function(conta) {
+      return conta.email.toLowerCase() === email.toLowerCase();
+    });
+
+    if (existe) {
+      mensagem.textContent = "Este e-mail já foi registado neste navegador.";
+      mensagem.className = "error";
+      return;
+    }
+
+    contas.push(utilizador);
+
+    localStorage.setItem(
+      "muachi_contas",
+      JSON.stringify(contas)
+    );
+
+    mensagem.textContent =
+      "Cadastro realizado com sucesso! Bem-vindo à MUACHI APP.";
+
+    mensagem.className = "success";
+
+    document.getElementById("formCadastro").reset();
+    campoLoja.classList.add("hidden");
+    loja.required = false;
+
+  } catch (erro) {
+
+    mensagem.textContent =
+      "Não foi possível guardar o cadastro neste navegador.";
+
+    mensagem.className = "error";
+
+  }
+
+});
+
 </script>
 
 </body>
 </html>
-
-
