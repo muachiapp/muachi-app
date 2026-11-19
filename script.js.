@@ -1,0 +1,15 @@
+// MUACHI APP
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const botao = document.getElementById("menu-btn");
+
+    if (botao) {
+        botao.addEventListener("click", function () {
+            alert("Bem-vindo ao MUACHI APP!");
+        });
+    }
+
+    console.log("MUACHI APP iniciado com sucesso!");
+
+});
