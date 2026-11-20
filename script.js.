@@ -5,13 +5,15 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
 import {
   getDatabase,
   ref,
-  set
+  set,
+  get
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
 const firebaseConfig = {
@@ -32,8 +34,52 @@ const database = getDatabase(
   "https://muachi-app-default-rtdb.firebaseio.com/"
 );
 
-// CADASTRO DE UTILIZADORES
-async function cadastrarUsuario(nome, email, senha, tipo) {
+const $ = id => document.getElementById(id);
+
+// MOSTRAR MENSAGENS
+function mensagem(id, texto, classe) {
+  const elemento = $(id);
+  elemento.textContent = texto;
+  elemento.className = classe;
+}
+
+// MOSTRAR OU ESCONDER CAMPO DA LOJA
+$("tipo").addEventListener("change", () => {
+  const vendedor = $("tipo").value === "Vendedor";
+
+  $("campoLoja").classList.toggle("hidden", !vendedor);
+  $("loja").required = vendedor;
+
+  if (!vendedor) $("loja").value = "";
+});
+
+// CADASTRO
+$("formCadastro").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const tipo = $("tipo").value;
+  const nome = $("nome").value.trim();
+  const email = $("email").value.trim().toLowerCase();
+  const telefone = $("telefone").value.trim();
+  const senha = $("senha").value;
+  const confirmar = $("confirmarSenha").value;
+  const loja = $("loja").value.trim();
+
+  if (senha.length < 8) {
+    mensagem("mensagem", "A palavra-passe deve ter pelo menos 8 caracteres.", "error");
+    return;
+  }
+
+  if (senha !== confirmar) {
+    mensagem("mensagem", "As palavras-passe não coincidem.", "error");
+    return;
+  }
+
+  if (tipo === "Vendedor" && !loja) {
+    mensagem("mensagem", "Indica o nome da tua loja.", "error");
+    return;
+  }
+
   try {
     const resultado = await createUserWithEmailAndPassword(
       auth,
@@ -41,50 +87,133 @@ async function cadastrarUsuario(nome, email, senha, tipo) {
       senha
     );
 
-    await set(ref(database, "usuarios/" + resultado.user.uid), {
-      nome: nome,
-      email: email,
-      tipo: tipo,
+    const uid = resultado.user.uid;
+
+    await set(ref(database, "usuarios/" + uid), {
+      uid,
+      nome,
+      email,
+      telefone,
+      tipo,
+      loja: tipo === "Vendedor" ? loja : "",
       dataCadastro: new Date().toISOString()
     });
 
-    return "Cadastro realizado com sucesso!";
-  } catch (erro) {
-    console.error(erro);
-    throw erro;
-  }
-}
-
-// LOGIN
-async function entrarUsuario(email, senha) {
-  try {
-    const resultado = await signInWithEmailAndPassword(
-      auth,
-      email,
-      senha
+    mensagem(
+      "mensagem",
+      "Cadastro realizado e dados guardados com sucesso!",
+      "success"
     );
 
-    return resultado.user;
+    $("formCadastro").reset();
+    $("campoLoja").classList.add("hidden");
+    $("loja").required = false;
+
   } catch (erro) {
-    console.error(erro);
-    throw erro;
+    console.error("Erro no cadastro:", erro);
+
+    mensagem(
+      "mensagem",
+      erro.code === "auth/email-already-in-use"
+        ? "Este e-mail já está registado."
+        : "Não foi possível concluir o cadastro. Verifica a ligação e as regras do Firebase.",
+      "error"
+    );
+  }
+});
+
+// LOGIN
+$("formLogin").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const email = $("emailLogin").value.trim().toLowerCase();
+  const senha = $("senhaLogin").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, senha);
+
+    $("formLogin").reset();
+
+    mensagem("mensagemLogin", "Entrada realizada com sucesso!", "success");
+
+  } catch (erro) {
+    console.error("Erro no login:", erro);
+
+    mensagem(
+      "mensagemLogin",
+      "E-mail ou palavra-passe incorrectos.",
+      "error"
+    );
+  }
+});
+
+// CARREGAR PERFIL
+async function carregarPerfil(usuario) {
+  try {
+    const resultado = await get(
+      ref(database, "usuarios/" + usuario.uid)
+    );
+
+    if (!resultado.exists()) {
+      $("minhaConta").classList.add("hidden");
+      mensagem(
+        "mensagemLogin",
+        "A conta existe, mas ainda não tem perfil guardado na base de dados.",
+        "error"
+      );
+      return;
+    }
+
+    const dados = resultado.val();
+
+    $("perfilNome").textContent = dados.nome || "";
+    $("perfilTipo").textContent = dados.tipo || "";
+    $("perfilEmail").textContent = dados.email || usuario.email || "";
+    $("perfilTelefone").textContent = dados.telefone || "";
+
+    $("perfilLoja").classList.toggle(
+      "hidden",
+      dados.tipo !== "Vendedor"
+    );
+
+    $("nomeLoja").textContent = dados.loja || "";
+
+    $("minhaConta").classList.remove("hidden");
+
+  } catch (erro) {
+    console.error("Erro ao carregar perfil:", erro);
+    mensagem(
+      "mensagemLogin",
+      "Não foi possível carregar o perfil.",
+      "error"
+    );
   }
 }
+
+// OBSERVAR ESTADO DA AUTENTICAÇÃO
+onAuthStateChanged(auth, async usuario => {
+  if (usuario) {
+    await carregarPerfil(usuario);
+  } else {
+    $("minhaConta").classList.add("hidden");
+  }
+});
 
 // TERMINAR SESSÃO
-async function sairUsuario() {
+$("sair").addEventListener("click", async () => {
   try {
     await signOut(auth);
-    return "Sessão terminada com sucesso!";
-  } catch (erro) {
-    console.error(erro);
-    throw erro;
-  }
-}
 
-// DISPONIBILIZAR FUNÇÕES PARA A APLICAÇÃO
-window.cadastrarUsuario = cadastrarUsuario;
-window.entrarUsuario = entrarUsuario;
-window.sairUsuario = sairUsuario;
+    mensagem(
+      "mensagemLogin",
+      "Sessão terminada com sucesso.",
+      "success"
+    );
+
+  } catch (erro) {
+    console.error("Erro ao sair:", erro);
+    mensagem("mensagemLogin", "Não foi possível terminar a sessão.", "error");
+  }
+});
 
 console.log("MUACHI APP ligada ao Firebase!");
