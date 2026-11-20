@@ -5,357 +5,335 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101116">
-<title>MUACHI APP | Comércio Digital</title>
+<title>MUACHI APP | Comércio Digital Africano</title>
 
 <style>
+:root {
+  --preto:#101116;
+  --painel:#1c1f27;
+  --dourado:#e4b84b;
+  --vermelho:#CE1126;
+  --amarelo:#FFCB05;
+  --branco:#ffffff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#101116;color:white;line-height:1.6}
-header{background:#17191f;padding:20px;text-align:center;border-bottom:1px solid #292c35}
-.logo{color:#e4b84b;font-size:29px;font-weight:bold;letter-spacing:3px}
-header p{color:#ccc;font-size:13px}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;padding:15px;background:#1c1f27}
-nav a{color:white;text-decoration:none;font-size:14px}
-nav a:hover{color:#e4b84b}
-.hero{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#17191f,#29251c)}
-.hero h1{font-size:30px;margin-bottom:15px}
-.hero span{color:#e4b84b}
-.hero p{color:#ccc;margin-bottom:25px}
-.btn{display:inline-block;padding:12px 25px;background:#e4b84b;color:#111;text-decoration:none;border-radius:6px;font-weight:bold;border:none;cursor:pointer}
-section{padding:40px 20px;max-width:1000px;margin:auto}
-h2{text-align:center;margin-bottom:25px;color:#e4b84b}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
-.product,.register,.profile{background:#1c1f27;padding:25px 20px;border-radius:10px;border:1px solid #30333d}
-.product{text-align:center}
-.product h3{color:#e4b84b}
-.product p,.intro{color:#bbb;font-size:14px}
-.register{max-width:550px;margin:auto}
-.intro{text-align:center;margin-bottom:20px}
-label{display:block;margin:13px 0 6px;font-size:14px}
-input,select{width:100%;padding:13px;border-radius:6px;border:1px solid #454956;background:#101116;color:white;font-size:15px}
-button{font-size:15px}
-.register button,.profile button{width:100%;margin-top:20px}
-.hidden{display:none!important}
-#mensagem,#mensagemLogin{margin-top:18px;text-align:center;font-size:14px}
-.success{color:#65df91}
-.error{color:#ff7777}
-.note{text-align:center;color:#aaa;font-size:12px;margin-top:15px}
-.profile{text-align:center;max-width:550px;margin:auto}
-.profile p{margin:10px 0;color:#ddd}
-.profile strong{color:#e4b84b}
-.contact{text-align:center;background:#1c1f27;border-radius:10px}
-footer{background:#17191f;padding:25px;text-align:center;color:#aaa;font-size:13px;margin-top:35px}
-footer span{color:#e4b84b}
-@media(max-width:600px){.hero h1{font-size:24px}nav{gap:13px}}
+
+body {
+  font-family:Arial,sans-serif;
+  background:var(--preto);
+  color:var(--branco);
+  line-height:1.6;
+}
+
+header {
+  background:linear-gradient(120deg,#101116,#301319,#1c1f27);
+  padding:24px 15px;
+  text-align:center;
+  border-bottom:3px solid var(--vermelho);
+}
+
+.logo {
+  color:var(--dourado);
+  font-size:32px;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+
+header p {color:#ddd;font-size:13px}
+
+nav {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:15px;
+  background:#1c1f27;
+  border-bottom:1px solid #393039;
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+nav a:hover {color:var(--dourado)}
+
+.hero {
+  text-align:center;
+  padding:75px 20px;
+  background:
+  repeating-linear-gradient(135deg,transparent 0 25px,#ffffff08 25px 27px),
+  linear-gradient(135deg,#17191f,#35141b,#29251c);
+  border-bottom:1px solid #40302c;
+}
+
+.hero h1 {font-size:32px;margin-bottom:15px}
+.hero span {color:var(--dourado)}
+.hero p {color:#ddd;margin-bottom:25px}
+
+.btn {
+  display:inline-block;
+  padding:13px 25px;
+  background:var(--dourado);
+  color:#111;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
+
+.btn:hover {background:var(--amarelo)}
+
+section {
+  padding:45px 20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+h2 {
+  text-align:center;
+  margin-bottom:25px;
+  color:var(--dourado);
+}
+
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.product,.register,.profile {
+  background:var(--painel);
+  padding:25px 20px;
+  border-radius:10px;
+  border:1px solid #38343b;
+}
+
+.product {
+  text-align:center;
+  border-top:3px solid var(--vermelho);
+}
+
+.product h3 {color:var(--dourado)}
+.product p,.intro {color:#bbb;font-size:14px}
+
+.register {max-width:550px;margin:auto}
+.intro {text-align:center;margin-bottom:20px}
+
+label {display:block;margin:13px 0 6px;font-size:14px}
+
+input,select {
+  width:100%;
+  padding:13px;
+  border-radius:6px;
+  border:1px solid #454956;
+  background:#101116;
+  color:white;
+  font-size:15px;
+}
+
+button {font-size:15px}
+.register button,.profile button {width:100%;margin-top:20px}
+
+.hidden {display:none!important}
+
+#mensagem,#mensagemLogin {
+  margin-top:18px;
+  text-align:center;
+  font-size:14px;
+}
+
+.success {color:#65df91}
+.error {color:#ff7777}
+
+.note {
+  text-align:center;
+  color:#aaa;
+  font-size:12px;
+  margin-top:15px;
+}
+
+.profile {
+  text-align:center;
+  max-width:550px;
+  margin:auto;
+}
+
+.profile p {margin:10px 0;color:#ddd}
+.profile strong {color:var(--dourado)}
+
+.contact {
+  text-align:center;
+  background:var(--painel);
+  border-radius:10px;
+  border-top:3px solid var(--vermelho);
+}
+
+.africa {
+  text-align:center;
+  padding:25px;
+  color:#ddd;
+  border-top:1px solid #333;
+}
+
+.africa span {color:var(--dourado)}
+
+footer {
+  background:#17191f;
+  padding:25px;
+  text-align:center;
+  color:#aaa;
+  font-size:13px;
+  border-top:3px solid var(--vermelho);
+}
+
+footer span {color:var(--dourado)}
+
+@media(max-width:600px) {
+  .hero h1 {font-size:24px}
+  nav {gap:13px}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">MUACHI APP</div>
-<p>O teu comércio, o teu futuro.</p>
+  <div class="logo">MUACHI APP</div>
+  <p>O teu comércio, o teu futuro.</p>
 </header>
 
 <nav>
-<a href="#inicio">Início</a>
-<a href="#produtos">Produtos</a>
-<a href="#cadastro">Cadastro</a>
-<a href="#login">Login</a>
-<a href="#contacto">Contacto</a>
+  <a href="#inicio">Início</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#cadastro">Cadastro</a>
+  <a href="#login">Login</a>
+  <a href="#contacto">Contacto</a>
 </nav>
 
 <div class="hero" id="inicio">
-<h1>Bem-vindo à <span>MUACHI APP</span></h1>
-<p>Compra, vende e descobre oportunidades.</p>
-<a href="#cadastro" class="btn">Criar minha conta</a>
+  <h1>Bem-vindo à <span>MUACHI APP</span></h1>
+  <p>Compra, vende e descobre oportunidades.</p>
+  <a href="#cadastro" class="btn">Criar minha conta</a>
 </div>
 
 <section id="produtos">
-<h2>Os nossos produtos</h2>
-<div class="products">
-<div class="product"><h3>Moda</h3><p>Vestuário e acessórios.</p></div>
-<div class="product"><h3>Tecnologia</h3><p>Produtos tecnológicos.</p></div>
-<div class="product"><h3>Calçado</h3><p>Estilo e qualidade.</p></div>
-<div class="product"><h3>Serviços</h3><p>Serviços e oportunidades.</p></div>
-</div>
+  <h2>Os nossos produtos</h2>
+  <div class="products">
+    <div class="product">
+      <h3>Moda</h3>
+      <p>Vestuário e acessórios.</p>
+    </div>
+    <div class="product">
+      <h3>Tecnologia</h3>
+      <p>Produtos tecnológicos.</p>
+    </div>
+    <div class="product">
+      <h3>Calçado</h3>
+      <p>Estilo e qualidade.</p>
+    </div>
+    <div class="product">
+      <h3>Serviços</h3>
+      <p>Serviços e oportunidades.</p>
+    </div>
+  </div>
 </section>
 
 <section id="cadastro">
-<div class="register">
-<h2>Criar conta MUACHI</h2>
-<p class="intro">Junta-te à nossa comunidade digital.</p>
+  <div class="register">
+    <h2>Criar conta MUACHI</h2>
+    <p class="intro">Junta-te à nossa comunidade digital.</p>
 
-<form id="formCadastro">
-<label>Tipo de conta</label>
-<select id="tipo" required>
-<option value="">Selecciona o tipo de conta</option>
-<option value="Comprador">Sou comprador</option>
-<option value="Vendedor">Sou vendedor</option>
-</select>
+    <form id="formCadastro">
 
-<label>Nome completo</label>
-<input type="text" id="nome" required placeholder="O teu nome completo">
+      <label>Tipo de conta</label>
+      <select id="tipo" required>
+        <option value="">Selecciona o tipo de conta</option>
+        <option value="Comprador">Sou comprador</option>
+        <option value="Vendedor">Sou vendedor</option>
+      </select>
 
-<label>Endereço de e-mail</label>
-<input type="email" id="email" required placeholder="exemplo@email.com">
+      <label>Nome completo</label>
+      <input type="text" id="nome" required placeholder="O teu nome completo">
 
-<label>Número de telefone</label>
-<input type="tel" id="telefone" required placeholder="923 000 000">
+      <label>Endereço de e-mail</label>
+      <input type="email" id="email" required placeholder="exemplo@email.com">
 
-<div id="campoLoja" class="hidden">
-<label>Nome da loja ou negócio</label>
-<input type="text" id="loja" placeholder="Nome da tua loja">
-</div>
+      <label>Número de telefone</label>
+      <input type="tel" id="telefone" required placeholder="923 000 000">
 
-<label>Criar palavra-passe</label>
-<input type="password" id="senha" minlength="8" required placeholder="Mínimo de 8 caracteres">
+      <div id="campoLoja" class="hidden">
+        <label>Nome da loja ou negócio</label>
+        <input type="text" id="loja" placeholder="Nome da tua loja">
+      </div>
 
-<label>Confirmar palavra-passe</label>
-<input type="password" id="confirmarSenha" required placeholder="Repete a palavra-passe">
+      <label>Criar palavra-passe</label>
+      <input type="password" id="senha" minlength="8" required>
 
-<button type="submit" class="btn">Criar minha conta</button>
-</form>
+      <label>Confirmar palavra-passe</label>
+      <input type="password" id="confirmarSenha" required>
 
-<div id="mensagem" aria-live="polite"></div>
-<p class="note">Versão de demonstração: os dados ficam guardados neste navegador.</p>
-</div>
+      <button type="submit" class="btn">Criar minha conta</button>
+    </form>
+
+    <div id="mensagem" aria-live="polite"></div>
+  </div>
 </section>
 
 <section id="login">
-<div class="register">
-<h2>Entrar na MUACHI</h2>
-<p class="intro">Acede à tua conta.</p>
+  <div class="register">
+    <h2>Entrar na MUACHI</h2>
+    <p class="intro">Acede à tua conta.</p>
 
-<form id="formLogin">
-<label>E-mail</label>
-<input type="email" id="emailLogin" required placeholder="O teu e-mail">
+    <form id="formLogin">
+      <label>E-mail</label>
+      <input type="email" id="emailLogin" required>
 
-<label>Palavra-passe</label>
-<input type="password" id="senhaLogin" required placeholder="A tua palavra-passe">
+      <label>Palavra-passe</label>
+      <input type="password" id="senhaLogin" required>
 
-<button type="submit" class="btn">Entrar</button>
-</form>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
 
-<div id="mensagemLogin" aria-live="polite"></div>
-</div>
+    <div id="mensagemLogin" aria-live="polite"></div>
+  </div>
 </section>
 
 <section id="minhaConta" class="hidden">
-<div class="profile">
-<h2>Minha conta MUACHI</h2>
-<p>Bem-vindo, <strong id="perfilNome"></strong>!</p>
-<p>Tipo de conta: <strong id="perfilTipo"></strong></p>
-<p>E-mail: <strong id="perfilEmail"></strong></p>
-<p>Telefone: <strong id="perfilTelefone"></strong></p>
-<p id="perfilLoja" class="hidden">Loja: <strong id="nomeLoja"></strong></p>
-<button id="sair" class="btn">Terminar sessão</button>
-</div>
+  <div class="profile">
+    <h2>Minha conta MUACHI</h2>
+    <p>Bem-vindo, <strong id="perfilNome"></strong>!</p>
+    <p>Tipo de conta: <strong id="perfilTipo"></strong></p>
+    <p>E-mail: <strong id="perfilEmail"></strong></p>
+    <p>Telefone: <strong id="perfilTelefone"></strong></p>
+    <p id="perfilLoja" class="hidden">
+      Loja: <strong id="nomeLoja"></strong>
+    </p>
+    <button id="sair" class="btn">Terminar sessão</button>
+  </div>
 </section>
 
+<div class="africa">
+  <p>África é a nossa inspiração.</p>
+  <p><span>Identidade. Cultura. Comércio. Futuro.</span></p>
+</div>
+
 <section id="contacto" class="contact">
-<h2>Fale connosco</h2>
-<p>MUACHI APP – Comércio Digital</p>
-<p>Raízes africanas, comércio e oportunidades.</p>
+  <h2>Fale connosco</h2>
+  <p>MUACHI APP – Comércio Digital</p>
+  <p>Raízes africanas, comércio e oportunidades.</p>
 </section>
 
 <footer>
-<p>© 2026 <span>MUACHI APP</span> – Todos os direitos reservados.</p>
-<p>Nascidos da Terra. Vestidos de Futuro.</p>
+  <p>© 2026 <span>MUACHI APP</span> – Todos os direitos reservados.</p>
+  <p>Nascidos da Terra. Vestidos de Futuro.</p>
 </footer>
 
-<script>
-const $ = id => document.getElementById(id);
-
-const tipo = $("tipo");
-const campoLoja = $("campoLoja");
-const loja = $("loja");
-
-tipo.addEventListener("change", () => {
-  const vendedor = tipo.value === "Vendedor";
-  campoLoja.classList.toggle("hidden", !vendedor);
-  loja.required = vendedor;
-  if (!vendedor) loja.value = "";
-});
-
-// Codificação da palavra-passe com PBKDF2
-function gerarHash(senha, sal) {
-  const encoder = new TextEncoder();
-
-  return crypto.subtle.importKey(
-    "raw",
-    encoder.encode(senha),
-    "PBKDF2",
-    false,
-    ["deriveBits"]
-  ).then(chave =>
-    crypto.subtle.deriveBits(
-      {
-        name: "PBKDF2",
-        salt: encoder.encode(sal),
-        iterations: 150000,
-        hash: "SHA-256"
-      },
-      chave,
-      256
-    )
-  ).then(bits =>
-    Array.from(new Uint8Array(bits))
-      .map(b => b.toString(16).padStart(2, "0"))
-      .join("")
-  );
-}
-
-function obterContas() {
-  return JSON.parse(localStorage.getItem("muachi_contas") || "[]");
-}
-
-// CADASTRO
-$("formCadastro").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const mensagem = $("mensagem");
-  mensagem.textContent = "";
-
-  const nome = $("nome").value.trim();
-  const email = $("email").value.trim().toLowerCase();
-  const telefone = $("telefone").value.trim();
-  const senha = $("senha").value;
-  const confirmar = $("confirmarSenha").value;
-
-  if (senha.length < 8) {
-    mensagem.textContent = "A palavra-passe deve ter pelo menos 8 caracteres.";
-    mensagem.className = "error";
-    return;
-  }
-
-  if (senha !== confirmar) {
-    mensagem.textContent = "As palavras-passe não coincidem.";
-    mensagem.className = "error";
-    return;
-  }
-
-  if (tipo.value === "Vendedor" && !loja.value.trim()) {
-    mensagem.textContent = "Indica o nome da tua loja.";
-    mensagem.className = "error";
-    return;
-  }
-
-  try {
-    const contas = obterContas();
-
-    if (contas.some(c => c.email === email)) {
-      mensagem.textContent = "Este e-mail já está registado.";
-      mensagem.className = "error";
-      return;
-    }
-
-    const sal = crypto.randomUUID();
-    const hash = await gerarHash(senha, sal);
-
-    const utilizador = {
-      id: crypto.randomUUID(),
-      tipo: tipo.value,
-      nome,
-      email,
-      telefone,
-      loja: tipo.value === "Vendedor" ? loja.value.trim() : "",
-      sal,
-      hash,
-      data: new Date().toISOString()
-    };
-
-    contas.push(utilizador);
-
-    localStorage.setItem("muachi_contas", JSON.stringify(contas));
-
-    mensagem.textContent =
-      "Cadastro registado com sucesso! Seja bem-vindo à MUACHI APP.";
-
-    mensagem.className = "success";
-    $("formCadastro").reset();
-    campoLoja.classList.add("hidden");
-    loja.required = false;
-
-  } catch (erro) {
-    mensagem.textContent = "Não foi possível guardar o cadastro.";
-    mensagem.className = "error";
-  }
-});
-
-// LOGIN
-$("formLogin").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const mensagem = $("mensagemLogin");
-  mensagem.textContent = "";
-
-  try {
-    const email = $("emailLogin").value.trim().toLowerCase();
-    const senha = $("senhaLogin").value;
-
-    const utilizador = obterContas().find(c => c.email === email);
-
-    if (!utilizador) {
-      mensagem.textContent = "Conta não encontrada.";
-      mensagem.className = "error";
-      return;
-    }
-
-    const hash = await gerarHash(senha, utilizador.sal);
-
-    if (hash !== utilizador.hash) {
-      mensagem.textContent = "Palavra-passe incorrecta.";
-      mensagem.className = "error";
-      return;
-    }
-
-    localStorage.setItem("muachi_sessao", utilizador.id);
-
-    $("formLogin").reset();
-    mostrarPerfil();
-
-  } catch (erro) {
-    mensagem.textContent = "Erro ao entrar na conta.";
-    mensagem.className = "error";
-  }
-});
-
-// PERFIL DO UTILIZADOR
-function mostrarPerfil() {
-  const id = localStorage.getItem("muachi_sessao");
-  const utilizador = obterContas().find(c => c.id === id);
-
-  if (!utilizador) {
-    localStorage.removeItem("muachi_sessao");
-    $("minhaConta").classList.add("hidden");
-    return;
-  }
-
-  $("perfilNome").textContent = utilizador.nome;
-  $("perfilTipo").textContent = utilizador.tipo;
-  $("perfilEmail").textContent = utilizador.email;
-  $("perfilTelefone").textContent = utilizador.telefone;
-
-  const vendedor = utilizador.tipo === "Vendedor";
-  $("perfilLoja").classList.toggle("hidden", !vendedor);
-  $("nomeLoja").textContent = utilizador.loja;
-
-  $("minhaConta").classList.remove("hidden");
-  $("minhaConta").scrollIntoView({behavior:"smooth"});
-}
-
-// TERMINAR SESSÃO
-$("sair").addEventListener("click", () => {
-  localStorage.removeItem("muachi_sessao");
-  $("minhaConta").classList.add("hidden");
-  $("mensagemLogin").textContent = "Sessão terminada com sucesso.";
-  $("mensagemLogin").className = "success";
-  $("login").scrollIntoView({behavior:"smooth"});
-});
-
-// Restaurar sessão ao abrir a página
-mostrarPerfil();
-</script>
 <script type="module" src="script.js"></script>
+
 </body>
-</html>
+  </html>
+  
