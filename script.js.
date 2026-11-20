@@ -8,6 +8,12 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
+import {
+  getDatabase,
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDelcahfeDjMPQ47c86qQV8JOQvIZ19Xtw",
   authDomain: "muachi-app.firebaseapp.com",
@@ -20,5 +26,65 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+const database = getDatabase(
+  app,
+  "https://muachi-app-default-rtdb.firebaseio.com/"
+);
+
+// CADASTRO DE UTILIZADORES
+async function cadastrarUsuario(nome, email, senha, tipo) {
+  try {
+    const resultado = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      senha
+    );
+
+    await set(ref(database, "usuarios/" + resultado.user.uid), {
+      nome: nome,
+      email: email,
+      tipo: tipo,
+      dataCadastro: new Date().toISOString()
+    });
+
+    return "Cadastro realizado com sucesso!";
+  } catch (erro) {
+    console.error(erro);
+    throw erro;
+  }
+}
+
+// LOGIN
+async function entrarUsuario(email, senha) {
+  try {
+    const resultado = await signInWithEmailAndPassword(
+      auth,
+      email,
+      senha
+    );
+
+    return resultado.user;
+  } catch (erro) {
+    console.error(erro);
+    throw erro;
+  }
+}
+
+// TERMINAR SESSÃO
+async function sairUsuario() {
+  try {
+    await signOut(auth);
+    return "Sessão terminada com sucesso!";
+  } catch (erro) {
+    console.error(erro);
+    throw erro;
+  }
+}
+
+// DISPONIBILIZAR FUNÇÕES PARA A APLICAÇÃO
+window.cadastrarUsuario = cadastrarUsuario;
+window.entrarUsuario = entrarUsuario;
+window.sairUsuario = sairUsuario;
 
 console.log("MUACHI APP ligada ao Firebase!");
